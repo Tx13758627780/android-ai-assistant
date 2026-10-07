@@ -1,0 +1,39 @@
+name: Publish verified MVP assets
+
+on:
+  push:
+    branches: [release-assets]
+    paths:
+      - 'releases/v0.1.0/**'
+      - '.github/workflows/publish-release.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: phoneagent-release-v0.1.0
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out verified release files
+        uses: actions/checkout@v4
+
+      - name: Verify checksums
+        working-directory: releases/v0.1.0
+        run: sha256sum -c SHA256SUMS.txt
+
+      - name: Publish APK and source archive
+        working-directory: releases/v0.1.0
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view v0.1.0 --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload v0.1.0 PhoneAgent-0.1.0-debug.apk PhoneAgent-0.1.0-source.zip SHA256SUMS.txt --repo "$GITHUB_REPOSITORY" --clobber
+          else
+            gh release create v0.1.0 PhoneAgent-0.1.0-debug.apk PhoneAgent-0.1.0-source.zip SHA256SUMS.txt --repo "$GITHUB_REPOSITORY" --verify-tag --prerelease --title '舟行 AI 0.1.0 · MVP' --notes-file RELEASE_NOTES.md
+          fi
