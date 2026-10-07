@@ -4,6 +4,10 @@
 
 需要 Android 11 / API 30 及以上。源码在 `app/` 和 `core/`；构建好的安装包位于 `app/build/outputs/apk/debug/app-debug.apk`。
 
+[下载 0.1.0 APK](https://github.com/Tx13758627780/android-ai-assistant/releases/download/v0.1.0/PhoneAgent-0.1.0-debug.apk) · [Release、源码包与校验文件](https://github.com/Tx13758627780/android-ai-assistant/releases/tag/v0.1.0)
+
+安装包使用 Debug 签名，适合个人测试；需要启用无障碍服务。56 项单元测试通过，真实设备业务场景尚未取得通过结果，详情见 [验证记录](docs/VALIDATION.md)。
+
 ## 已实现
 
 - 文字输入、系统语音识别输入；中文任务界面、状态与步骤记录。
