@@ -1,0 +1,13 @@
+<resources>
+    <style name="Theme.PhoneAgent" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">#0A1018</item>
+        <item name="android:navigationBarColor">#0A1018</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:colorAccent">#65DFC6</item>
+        <item name="android:windowBackground">#0A1018</item>
+    </style>
+    <string name="app_name">舟行 AI</string>
+    <string name="accessibility_description">允许舟行 AI 读取当前屏幕、截图并执行您发起的任务。只有主动提交任务后才会操作；付款、删除、消息发送与不确定的点击会暂停并要求确认。可随时停止或在系统设置关闭服务。</string>
+</resources>
